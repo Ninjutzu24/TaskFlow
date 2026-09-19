@@ -22,4 +22,20 @@ public class Task {
         this.status = Status.TO_DO;
         this.deadline = deadline;
     }
+
+    public String getTitle()
+    {
+        return title;
+    }
+
+    public void setStatus(Status status)
+    {
+        this.status = status;
+    }
+
+    public Status getStatus()
+    {
+        return status;
+    }
+
 }
