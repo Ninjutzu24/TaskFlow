@@ -21,6 +21,21 @@ public class User {
 
         this.projects = new ArrayList<>();
     }
+
+    public void addProject(Project project)
+    {
+        projects.add(project);
+    }
+
+    public List<Project> getProjects()
+    {
+        return List.copyOf(projects);
+    }
+
+    public boolean removeProject(Project project)
+    {
+        return projects.remove(project);
+    }
 }
 
 
