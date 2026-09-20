@@ -23,19 +23,14 @@ public class Task {
         this.deadline = deadline;
     }
 
-    public String getTitle()
-    {
-        return title;
-    }
+    public String getTitle() { return title; }
 
-    public void setStatus(Status status)
-    {
-        this.status = status;
-    }
+    public void setStatus(Status status) { this.status = status; }
 
-    public Status getStatus()
-    {
-        return status;
-    }
+    public Status getStatus() { return status; }
+
+    public Priority getPriority(){ return priority; }
+
+    public LocalDate getDeadline() { return deadline; }
 
 }

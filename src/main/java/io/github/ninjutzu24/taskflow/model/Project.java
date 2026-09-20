@@ -1,6 +1,7 @@
 package io.github.ninjutzu24.taskflow.model;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,5 +47,26 @@ public class Project {
         }
 
         return false;
+    }
+
+    public List<Task> findTasksByStatus(Status status)
+    {
+        return tasks.stream()
+                .filter(task -> task.getStatus().equals(status))
+                .toList();
+    }
+
+    public List<Task> findTasksByPriority(Priority priority)
+    {
+        return tasks.stream()
+                .filter(task -> task.getPriority().equals(priority))
+                .toList();
+    }
+
+    public List<Task> sortByDeadline()
+    {
+        return tasks.stream()
+                .sorted(Comparator.comparing(task -> task.getDeadline()))
+                .toList();
     }
 }

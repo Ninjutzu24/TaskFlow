@@ -1,6 +1,7 @@
 package io.github.ninjutzu24.taskflow.model;
 
 import org.junit.jupiter.api.Test;
+import java.util.List;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -122,5 +123,128 @@ class ProjectTest {
         // Assert
         assertTrue(result);
         assertEquals(Status.DONE, task.getStatus());
+    }
+
+    @Test
+    public void TestfindTaskByStatus()
+    {
+        //Arrange
+        Project project = new Project("Project 1");
+
+        Task task = new Task(
+                "Task1",
+                "first task",
+                Priority.HIGH,
+                LocalDate.of(2005, 7, 10)
+        );
+
+        Task task2 = new Task(
+                "Task2",
+                "second task",
+                Priority.LOW,
+                LocalDate.of(2005, 8, 10)
+        );
+
+        Task task3 = new Task(
+                "Task3",
+                "third task",
+                Priority.MEDIUM,
+                LocalDate.of(2006, 5, 5)
+        );
+
+        task2.setStatus(Status.DONE);
+        task3.setStatus(Status.IN_PROGRESS);
+
+        project.addTask(task);
+        project.addTask(task2);
+        project.addTask(task3);
+
+        //ACT
+        List<Task> result = project.findTasksByStatus(Status.DONE);
+
+        // Assert
+        assertEquals(1, result.size());
+        assertEquals(task2, result.get(0));
+    }
+
+    @Test
+    public void TestfindTaskByPriority()
+    {
+        //Arrange
+        Project project = new Project("Project 1");
+
+        Task task = new Task(
+                "Task1",
+                "first task",
+                Priority.HIGH,
+                LocalDate.of(2005, 7, 10)
+        );
+
+        Task task2 = new Task(
+                "Task2",
+                "second task",
+                Priority.LOW,
+                LocalDate.of(2005, 8, 10)
+        );
+
+        Task task3 = new Task(
+                "Task3",
+                "third task",
+                Priority.MEDIUM,
+                LocalDate.of(2006, 5, 5)
+        );
+
+
+        project.addTask(task);
+        project.addTask(task2);
+        project.addTask(task3);
+
+        //ACT
+        List<Task> result = project.findTasksByPriority(Priority.HIGH);
+
+        // Assert
+        assertEquals(1, result.size());
+        assertEquals(task, result.get(0));
+    }
+
+    @Test
+    public void TestSortingByDeadline()
+    {
+        //Arrange
+        Project project = new Project("Project 1");
+
+        Task task1 = new Task(
+                "Task1",
+                "first task",
+                Priority.HIGH,
+                LocalDate.of(2005, 5, 5)
+        );
+
+        Task task2 = new Task(
+                "Task2",
+                "second task",
+                Priority.LOW,
+                LocalDate.of(2005, 8, 10)
+        );
+
+        Task task3 = new Task(
+                "Task3",
+                "third task",
+                Priority.MEDIUM,
+                LocalDate.of(2006, 7, 10)
+        );
+
+
+        project.addTask(task1);
+        project.addTask(task2);
+        project.addTask(task3);
+
+        //ACT
+        List<Task> result = project.sortByDeadline();
+
+        // Assert
+        assertEquals(task1, result.get(0));
+        assertEquals(task2, result.get(1));
+        assertEquals(task3, result.get(2));
     }
 }
