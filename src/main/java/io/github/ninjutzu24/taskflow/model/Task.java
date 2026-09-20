@@ -1,5 +1,6 @@
 package io.github.ninjutzu24.taskflow.model;
 
+import io.github.ninjutzu24.taskflow.exception.InvalidTaskException;
 import java.time.LocalDate;
 
 public class Task {
@@ -16,6 +17,19 @@ public class Task {
             LocalDate deadline
     )
     {
+
+        if (title == null || title.isBlank()) {
+           throw new InvalidTaskException("Task title cannot be null or blank");
+        }
+
+        if (priority == null) {
+            throw new InvalidTaskException("Priority cannot be null");
+        }
+
+        if (deadline == null) {
+            throw new InvalidTaskException("Deadline cannot be null");
+        }
+
         this.title = title;
         this.description = description;
         this.priority = priority;
