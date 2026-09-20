@@ -4,12 +4,9 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ProjectTest {
 
@@ -247,4 +244,5 @@ class ProjectTest {
         assertEquals(task2, result.get(1));
         assertEquals(task3, result.get(2));
     }
+
 }
